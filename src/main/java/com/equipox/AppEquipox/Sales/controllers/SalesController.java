@@ -28,6 +28,7 @@ public class SalesController {
         this.salesService = salesService;
         this.customerService = customerService;
         this.paymentMethodService = paymentMethodService;
+
     }
 
     @GetMapping("/id")
