@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.equipox.AppEquipox.Inventory.models.InventoryModel;
@@ -35,6 +36,13 @@ public class InventoryController {
     @GetMapping("/{id}")
     public ResponseEntity<InventoryModel> getInventoryById(@PathVariable Long id) {
         Optional<InventoryModel> inventory = inventoryService.getInventoryById(id);
+        return inventory.map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/searchName")
+    public ResponseEntity<InventoryModel> getInventoryById(@RequestParam String productName) {
+        Optional<InventoryModel> inventory = inventoryService.findByProductName(productName);
         return inventory.map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
