@@ -47,4 +47,11 @@ public class ProductController {
         return ResponseEntity.ok(products);
     }
 
+
+    //listar productos por categoría (con endpoints)
+    @GetMapping("/category/{category}")
+    public ResponseEntity<List<ProductModel>> getProductsByCategory(@PathVariable String category) {
+        List<ProductModel> products = productService.getProductsByCategory(category);
+        return ResponseEntity.ok(products);
+    }
 }
