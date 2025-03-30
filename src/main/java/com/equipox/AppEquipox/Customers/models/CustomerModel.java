@@ -57,5 +57,6 @@ public class CustomerModel {
 
     @Column(nullable = true, length = 50)
     private String city;
+    
 
 }
