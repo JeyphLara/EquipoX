@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.equipox.AppEquipox.AppEquipoxApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 45.17 s -- in com.equipox.AppEquipox.AppEquipoxApplicationTests
