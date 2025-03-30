@@ -42,4 +42,7 @@ public class InventoryService {
         return inventoryRepository.findByProductName(productName);
     }
 
+    public List<InventoryModel> searchProducts(String searchParam) {
+        return inventoryRepository.findBySearchTerm(searchParam);
+    }
 }

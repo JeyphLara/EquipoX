@@ -1,7 +1,10 @@
 package com.equipox.AppEquipox.Inventory.controllers;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -61,5 +64,25 @@ public class InventoryController {
         } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<Map<String, Object>>> searchProducts(
+            @RequestParam String searchTerm) {
+
+        List<InventoryModel> inventoryList = inventoryService.searchProducts(searchTerm);
+
+        // Transformar la respuesta para devolver solo los datos necesarios
+        List<Map<String, Object>> response = inventoryList.stream().map(inventory -> {
+            Map<String, Object> productInfo = new HashMap<>();
+            productInfo.put("code", inventory.getProductCode());
+            productInfo.put("description", inventory.getProduct().getDescription());
+            productInfo.put("price", inventory.getProduct().getVlrVenta());
+            productInfo.put("stock", inventory.getQuantity());
+            productInfo.put("category", inventory.getProduct().getCategory());
+            return productInfo;
+        }).collect(Collectors.toList());
+
+        return ResponseEntity.ok(response);
     }
 }
