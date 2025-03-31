@@ -29,3 +29,4 @@ public class ReviewModel {
     @JoinColumn(name = "product_id", nullable = false)
     private ProductModel product;
 }
+

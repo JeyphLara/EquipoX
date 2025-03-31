@@ -65,7 +65,7 @@ public class ProductModel {
     // private int stock;                           //Stock disponible
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)   //Relaciona las reseñas con un producto.
-    private List<ReviewModel> reviews;              //Relación con reseñas, permite que un producto tenga múltiples reseñas.
+    private List<ReviewModel> reviews;              //Relación con reseñas
 
 
     @ManyToMany         //permite vincular productos relacionados en una tabla intermedia related_products.
