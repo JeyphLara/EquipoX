@@ -11,5 +11,6 @@ import com.equipox.AppEquipox.Products.models.ProductModel;
 public interface ProductRepository extends JpaRepository<ProductModel, Long> {
 
     List<ProductModel> findByDescription(String description);
+    List<ProductModel> findByCategory(String category);
 
 }
