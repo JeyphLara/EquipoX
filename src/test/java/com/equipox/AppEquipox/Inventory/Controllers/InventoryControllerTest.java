@@ -40,7 +40,6 @@ class InventoryControllerTest {
 
         // Act
         List<InventoryModel> result = inventoryController.getAllInventory();
-
         // Assert
         assertNotNull(result);
         assertEquals(2, result.size());
