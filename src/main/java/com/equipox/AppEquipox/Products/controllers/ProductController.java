@@ -48,6 +48,7 @@ public class ProductController {
         return ResponseEntity.ok(products);
     
     }
+
     //edww
     @GetMapping("/filter")
 public ResponseEntity<List<ProductModel>> filterProducts(
