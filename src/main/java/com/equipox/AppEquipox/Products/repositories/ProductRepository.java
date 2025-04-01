@@ -9,6 +9,8 @@ import com.equipox.AppEquipox.Products.models.ProductModel;
 import java.math.BigDecimal;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.data.repository.query.Param;
+import org.springframework.data.jpa.repository.Query;
+
 
 @Repository
 public interface ProductRepository extends JpaRepository<ProductModel, Long> {
