@@ -30,4 +30,10 @@ public class ProductService {
     public List<ProductModel> getProductByDescription(String description) {
         return productRepository.findByDescription(description);
     }
+
+
+    //listar productos por categoría
+    public List<ProductModel> getProductsByCategory(String category) {
+        return productRepository.findByCategory(category);
+    }
 }
