@@ -2,14 +2,9 @@ package com.equipox.AppEquipox.Products.models;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -56,6 +51,33 @@ public class ProductModel {
     @Column(nullable = false, updatable = false, name = "created_at")
     private LocalDateTime createdAt;
 
+    //variables complemntarias, para subsanar la HU-9 "Visualizar detalles del producto".
+    @Column(nullable = true, length = 255)
+    private String imageUrl;                        //para almacenar la url de la imagen el producto
+
+    @Column(nullable = true, length = 500)
+    private String materials;                       //Materiales
+
+    @Column(nullable = true, length = 500)
+    private String functionalities;                 //Funcionalidades
+
+    // @Column(nullable = false)
+    // private int stock;                           //Stock disponible
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)   //Relaciona las reseñas con un producto.
+    private List<ReviewModel> reviews;              //Relación con reseñas
+
+
+    @ManyToMany         //permite vincular productos relacionados en una tabla intermedia related_products.
+    @JoinTable(
+        name = "related_products",
+        joinColumns = @JoinColumn(name = "product_id"),
+        inverseJoinColumns = @JoinColumn(name = "related_product_id")
+    )
+    private List<ProductModel> relatedProducts;      //Relación con productos recomendados
+
+
+    
     @PrePersist
     protected void onCreate() {
         this.createdAt = LocalDateTime.now();

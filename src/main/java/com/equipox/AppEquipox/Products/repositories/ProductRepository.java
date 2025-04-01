@@ -16,14 +16,13 @@ import org.springframework.data.jpa.repository.Query;
 public interface ProductRepository extends JpaRepository<ProductModel, Long> {
 
     List<ProductModel> findByDescription(String description);
-    
-    //ecaic
+    List<ProductModel> findByCategory(String category);
 
     @Query("SELECT p FROM ProductModel p WHERE " +
        "(:category IS NULL OR p.category = :category) AND " +
        "(:minPrice IS NULL OR p.vlrVenta >= :minPrice) AND " +
        "(:maxPrice IS NULL OR p.vlrVenta <= :maxPrice) AND " +
-       "(:stockAvailable IS NULL OR p.stock > 0)") 
+       "(:stockAvailable IS NULL OR p.stock > 0)")
 
        List<ProductModel> filterProducts(
         @Param("category") String category,
