@@ -49,20 +49,22 @@ public class ProductController {
     
     }
 
-    //edww
+    // edww
     @GetMapping("/filter")
 public ResponseEntity<List<ProductModel>> filterProducts(
         @RequestParam(required = false) String category,
         @RequestParam(required = false) BigDecimal minPrice,
         @RequestParam(required = false) BigDecimal maxPrice,
         @RequestParam(required = false) Boolean stockAvailable) {
-    
+
     List<ProductModel> filteredProducts = productService.filterProducts(category, minPrice, maxPrice, stockAvailable);
-    
+
     if (filteredProducts.isEmpty()) {
         return ResponseEntity.noContent().build();
     }
-    
+
+
+
     return ResponseEntity.ok(filteredProducts);
 }
 
