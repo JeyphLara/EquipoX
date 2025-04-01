@@ -14,9 +14,10 @@ on:
   pull_request:
     branches: [ "develop" ]
     
-
 permissions:
-  contents: read
+  contents: write
+  pull-requests: write
+  repository-projects: write
   id-token: write
   packages: write
   actions: read
@@ -26,6 +27,7 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+
 
     steps:
     - uses: actions/checkout@v4
