@@ -19,6 +19,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@SuppressWarnings("unused")
 @Builder
 @Entity
 @Getter
@@ -56,5 +57,6 @@ public class CustomerModel {
 
     @Column(nullable = true, length = 50)
     private String city;
+    
 
 }

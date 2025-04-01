@@ -48,7 +48,6 @@ public class ProductController {
         return ResponseEntity.ok(products);
     
     }
-
     //edww
     @GetMapping("/filter")
 public ResponseEntity<List<ProductModel>> filterProducts(
@@ -65,4 +64,11 @@ public ResponseEntity<List<ProductModel>> filterProducts(
     
     return ResponseEntity.ok(filteredProducts);
 }
+
+    //listar productos por categoría (con endpoints)
+    @GetMapping("/category/{category}")
+    public ResponseEntity<List<ProductModel>> getProductsByCategory(@PathVariable String category) {
+        List<ProductModel> products = productService.getProductsByCategory(category);
+        return ResponseEntity.ok(products);
+    }
 }
