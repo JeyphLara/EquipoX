@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import java.math.BigDecimal;
 
 import com.equipox.AppEquipox.Products.models.ProductModel;
 import com.equipox.AppEquipox.Products.services.ProductService;
@@ -48,29 +49,21 @@ public class ProductController {
 
     }
 
-    //edww
+    // edww
     @GetMapping("/filter")
-public ResponseEntity<List<ProductModel>> filterProducts(
-        @RequestParam(required = false) String category,
-        @RequestParam(required = false) BigDecimal minPrice,
-        @RequestParam(required = false) BigDecimal maxPrice,
-        @RequestParam(required = false) Boolean stockAvailable) {
+    public ResponseEntity<List<ProductModel>> filterProducts(
+            @RequestParam(required = false) String category,
+            @RequestParam(required = false) BigDecimal minPrice,
+            @RequestParam(required = false) BigDecimal maxPrice,
+            @RequestParam(required = false) Boolean stockAvailable) {
 
-    List<ProductModel> filteredProducts = productService.filterProducts(category, minPrice, maxPrice, stockAvailable);
+        List<ProductModel> filteredProducts = productService.filterProducts(category, minPrice, maxPrice,
+                stockAvailable);
 
-    if (filteredProducts.isEmpty()) {
-        return ResponseEntity.noContent().build();
-    }
+        if (filteredProducts.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
 
-
-
-    return ResponseEntity.ok(filteredProducts);
-}
-
-    //listar productos por categoría (con endpoints)
-    @GetMapping("/category/{category}")
-    public ResponseEntity<List<ProductModel>> getProductsByCategory(@PathVariable String category) {
-        List<ProductModel> products = productService.getProductsByCategory(category);
-        return ResponseEntity.ok(products);
+        return ResponseEntity.ok(filteredProducts);
     }
 }

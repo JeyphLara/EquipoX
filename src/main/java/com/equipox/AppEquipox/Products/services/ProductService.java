@@ -31,4 +31,10 @@ public class ProductService {
     public List<ProductModel> getProductByDescription(String description) {
         return productRepository.findByDescription(description);
     }
+
+    // ed
+    public List<ProductModel> filterProducts(String category, BigDecimal minPrice, BigDecimal maxPrice,
+            Boolean stockAvailable) {
+        return productRepository.filterProducts(category, minPrice, maxPrice, stockAvailable);
+    }
 }
