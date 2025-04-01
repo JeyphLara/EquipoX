@@ -16,6 +16,7 @@ import org.springframework.data.jpa.repository.Query;
 public interface ProductRepository extends JpaRepository<ProductModel, Long> {
 
     List<ProductModel> findByDescription(String description);
+    List<ProductModel> findByCategory(String category);
     
     //ecaic
 
