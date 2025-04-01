@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.math.BigDecimal;
 
 import com.equipox.AppEquipox.Products.models.ProductModel;
 import com.equipox.AppEquipox.Products.repositories.ProductRepository;
@@ -29,11 +30,5 @@ public class ProductService {
 
     public List<ProductModel> getProductByDescription(String description) {
         return productRepository.findByDescription(description);
-    }
-
-
-    //listar productos por categoría
-    public List<ProductModel> getProductsByCategory(String category) {
-        return productRepository.findByCategory(category);
     }
 }
