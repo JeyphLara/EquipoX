@@ -46,24 +46,32 @@ public class ProductController {
     public ResponseEntity<List<ProductModel>> searchProducts(@RequestParam String name) {
         List<ProductModel> products = productService.getProductByDescription(name);
         return ResponseEntity.ok(products);
-
+    
     }
 
     // edww
     @GetMapping("/filter")
-    public ResponseEntity<List<ProductModel>> filterProducts(
-            @RequestParam(required = false) String category,
-            @RequestParam(required = false) BigDecimal minPrice,
-            @RequestParam(required = false) BigDecimal maxPrice,
-            @RequestParam(required = false) Boolean stockAvailable) {
+public ResponseEntity<List<ProductModel>> filterProducts(
+        @RequestParam(required = false) String category,
+        @RequestParam(required = false) BigDecimal minPrice,
+        @RequestParam(required = false) BigDecimal maxPrice,
+        @RequestParam(required = false) Boolean stockAvailable) {
 
-        List<ProductModel> filteredProducts = productService.filterProducts(category, minPrice, maxPrice,
-                stockAvailable);
+    List<ProductModel> filteredProducts = productService.filterProducts(category, minPrice, maxPrice, stockAvailable);
 
-        if (filteredProducts.isEmpty()) {
-            return ResponseEntity.noContent().build();
-        }
+    if (filteredProducts.isEmpty()) {
+        return ResponseEntity.noContent().build();
+    }
 
-        return ResponseEntity.ok(filteredProducts);
+
+
+    return ResponseEntity.ok(filteredProducts);
+}
+
+    //listar productos por categoría (con endpoints)
+    @GetMapping("/category/{category}")
+    public ResponseEntity<List<ProductModel>> getProductsByCategory(@PathVariable String category) {
+        List<ProductModel> products = productService.getProductsByCategory(category);
+        return ResponseEntity.ok(products);
     }
 }
