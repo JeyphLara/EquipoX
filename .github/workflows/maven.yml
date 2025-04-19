@@ -64,7 +64,7 @@ jobs:
 
     - name: Save private key
       run: |
-        echo "${{ secrets.EC2_KEY }}" > key.pem
+        echo "${{ secrets.EC2_SSH_KEY }}" | tr -d '\r' > key.pem
         chmod 600 key.pem
       
     - name: Upload JAR to EC2
