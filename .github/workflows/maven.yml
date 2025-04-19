@@ -86,6 +86,6 @@ jobs:
   
           echo "Iniciando aplicación..."
           cd /home/ec2-user
-          nohup java -jar AppEquipox-0.0.1-SNAPSHOT.jar > app.log 2>&1 &
+          nohup java -jar AppEquipox-0.0.1-SNAPSHOT.jar > app.log 2>&1 & disown
   
           echo "Proceso lanzado"
