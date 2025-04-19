@@ -70,6 +70,6 @@ jobs:
 
     - name: Restart app service on EC2
       run: |
-          ssh -o StrictHostKeyChecking=no -i ${{ secrets.EC2_KEY }} \
+          ssh -o StrictHostKeyChecking=no -i ${{ secrets.EC2_SSH_KEY }} \
             ec2-user@${{ secrets.EC2_HOST }} \
             'sudo systemctl restart appequipox && sudo systemctl status appequipox'
