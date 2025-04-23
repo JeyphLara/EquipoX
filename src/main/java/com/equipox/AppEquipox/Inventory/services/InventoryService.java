@@ -45,4 +45,9 @@ public class InventoryService {
     public List<InventoryModel> searchProducts(String searchParam) {
         return inventoryRepository.findBySearchTerm(searchParam);
     }
+
+    public boolean existsByProductId(Long productId) {
+        return inventoryRepository.existsByProductId(productId);
+    }
+
 }
