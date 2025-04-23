@@ -90,4 +90,3 @@ jobs:
             -e POSTGRES_DB_PASS=${{ secrets.POSTGRES_DB_PASS }} \
             -e POSTGRES_DB_NAME=${{ secrets.POSTGRES_DB_NAME }} \
             apiequipox
-
