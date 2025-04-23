@@ -51,33 +51,29 @@ public class ProductModel {
     @Column(nullable = false, updatable = false, name = "created_at")
     private LocalDateTime createdAt;
 
-    //variables complemntarias, para subsanar la HU-9 "Visualizar detalles del producto".
+    // variables complemntarias, para subsanar la HU-9 "Visualizar detalles del
+    // producto".
     @Column(nullable = true, length = 255)
-    private String imageUrl;                        //para almacenar la url de la imagen el producto
+    private String imageUrl; // para almacenar la url de la imagen el producto
 
     @Column(nullable = true, length = 500)
-    private String materials;                       //Materiales
+    private String materials; // Materiales
 
     @Column(nullable = true, length = 500)
-    private String functionalities;                 //Funcionalidades
+    private String functionalities; // Funcionalidades
 
     // @Column(nullable = false)
-    // private int stock;                           //Stock disponible
+    // private int stock; // Stock disponible
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)   //Relaciona las reseñas con un producto.
-    private List<ReviewModel> reviews;              //Relación con reseñas
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true) // Relaciona las reseñas con un
+                                                                                      // producto.
+    private List<ReviewModel> reviews; // Relación con reseñas
 
+    @ManyToMany // permite vincular productos relacionados en una tabla intermedia
+                // related_products.
+    @JoinTable(name = "related_products", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "related_product_id"))
+    private List<ProductModel> relatedProducts; // Relación con productos recomendados
 
-    @ManyToMany         //permite vincular productos relacionados en una tabla intermedia related_products.
-    @JoinTable(
-        name = "related_products",
-        joinColumns = @JoinColumn(name = "product_id"),
-        inverseJoinColumns = @JoinColumn(name = "related_product_id")
-    )
-    private List<ProductModel> relatedProducts;      //Relación con productos recomendados
-
-
-    
     @PrePersist
     protected void onCreate() {
         this.createdAt = LocalDateTime.now();
