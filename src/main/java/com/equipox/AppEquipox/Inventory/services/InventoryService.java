@@ -38,4 +38,16 @@ public class InventoryService {
         }).orElseThrow(() -> new RuntimeException("No se encontro Inventario con ID: " + id));
     }
 
+    public Optional<InventoryModel> findByProductName(String productName) {
+        return inventoryRepository.findByProductName(productName);
+    }
+
+    public List<InventoryModel> searchProducts(String searchParam) {
+        return inventoryRepository.findBySearchTerm(searchParam);
+    }
+
+    public boolean existsByProductId(Long productId) {
+        return inventoryRepository.existsByProductId(productId);
+    }
+
 }
