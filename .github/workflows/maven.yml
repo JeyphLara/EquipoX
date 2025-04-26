@@ -78,6 +78,7 @@ jobs:
         username: ${{ secrets.EC2_USER }}
         key: ${{ secrets.EC2_SSH_KEY }}
         script: |
+          ls -lh /home/ec2-user/target/
           docker stop apiequipox || true
           docker rm apiequipox || true
           docker build -t apiequipox .
