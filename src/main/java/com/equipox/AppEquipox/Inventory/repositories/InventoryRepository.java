@@ -26,4 +26,6 @@ public interface InventoryRepository extends JpaRepository<InventoryModel, Long>
             "OR LOWER(i.productName) LIKE LOWER(CONCAT('%', :searchParam, '%'))) " +
             "AND i.quantity > 0")
     public List<InventoryModel> findBySearchTerm(@Param("searchParam") String searchParam);
+
+    public boolean existsByProductId(Long productId);
 }
