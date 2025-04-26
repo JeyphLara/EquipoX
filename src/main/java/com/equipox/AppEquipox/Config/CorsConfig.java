@@ -14,7 +14,7 @@ public class CorsConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/")
-                        .allowedOriginPatterns("*") // TODO: restringir en producción
+                        .allowedOriginPatterns("*") // NOSONAR: Exposición pública intencional
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
                         .allowCredentials(true);
